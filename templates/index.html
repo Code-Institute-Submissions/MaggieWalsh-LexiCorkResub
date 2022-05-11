@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
+    {% for letter in list_of_letters %}
+    <p>{{ list_of_letters}}</p>
+    {% endfor %}
+    
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
             <div class="post-preview">
                 <p class="alphabet">
-                    <h2 class="post-title">
-                        Browse the dictionary
-                    </h2>
+                    <h2>{{ page_title }}</h2>
                     <h3 class="post-subtitle">
                         <p>					  
                             <a href="{{ url_for('a') }}">a</a>					  
