@@ -18,37 +18,24 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
+def index():
+    return render_template("index.html", page_title="Browse the dictionary", list_of_letters=[1, 2, 3, 4, 5])
+
+
 @app.route("/get_tasks")
 def get_tasks():
     tasks = mongo.db.tasks.find()
     return render_template("tasks.html", tasks=tasks)
 
 
+@app.route("/about")
+def about():
+    return render_template("about.html", page_title="About")
 
 
-
-
-# @app.route("/")
-# def index():
-#     return render_template("index.html", page_title="Browse the dictionary", list_of_letters=[1, 2, 3, 4, 5])
-
-
-# # delete after testing
-# @app.route("/get_tasks")
-# def get_tasks():
-#     tasks = mongo.db.tasks.find()
-#     return render_template("tasks.html", tasks=tasks)
-
-
-
-# @app.route("/about")
-# def about():
-#     return render_template("about.html", page_title="About")
-
-
-# @app.route("/contact")
-# def contact():
-#     return render_template("contact.html", page_title="Contact Us")
+@app.route("/contact")
+def contact():
+    return render_template("contact.html", page_title="Contact Us")
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
