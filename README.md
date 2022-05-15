@@ -1,10 +1,10 @@
 # 24/7 Scores
 
-I created this website for the 2nd Milestone Project on Interactive Frontend, at Code Institute's Diploma in Software Development course. 
+I created this website for the 3rd Milestone Project on Data Centric Development, at Code Institute's Diploma in Software Development course. 
 
-Visit the live [website.](https://maggiewalsh.github.io/24-7-Scores/)
+Visit the live [website.](https://lexicork.herokuapp.com/)
 
-I wanted to create a website for fans of the English Premier League, where they could find a table of the current standings, along with a live Twitter feed for top news stories.
+This website is a dictionary of the colloquial language in Co. Cork, Ireland. The name is taken from the word 'lexicon', which is another word for dictionary and the word Cork replacing the end for a play on words that hopefully gives an idea of what the website is about.
 
 ![Am I Responsive image of how the website looks across different browser sizes](docs/am-i-responsive.png)
 
@@ -46,44 +46,42 @@ I wanted to create a website for fans of the English Premier League, where they 
 
   * ## Project Research
 
-    As an avid football fan, I wanted to create a website that I would like to use myself to keep up to date with football news.
+    Slang words from other countries or dialects are really popular on social media. There are entire accounts dedicted to this.
 
     * ## Research Analysis
 
-      People appreciate not having to jump between multiple sites to get different information relating to their interests. One place to get all the latest updates is what people are looking for. 
+      I created this website in order to allow people a place to access the many words of my own home county.
+
 
   * ## Persona and Their Goals
 
-    * The ideal visitor to this website is a football fan.
+    * The ideal visitor to this website is someone who loves words and their meanings.
 
-    * They are looking for current league standings. 
-
-    * They want to know what teams are currently in position to qualify for certain tournaments, and what teams are in the relegation zone.
+    * They are looking for a website that allows them to find new words easily. 
     
-    * They are looking for up-to-date news on the English premier league.
-    
-    * They want to know all the teams currently in the league, and where they are located.
+    * They are looking to return to the site and revisit their favourite words.
 
-    * They want to be able to navigate to their own teams website with ease, from this website.
+    * They want to be able to share the words they find easily.
 
   * ## Owner Goals
     1. Increase traffic to the site.
     2. Keep existing visitors interested.
-    3. Become a go-to website for football updates.
   * ## User Stories
     1. As a user visiting the site for the first time, I want to navigate the site intuitively.
     2. As a user, I want to know what information this site provides.
-    3. As a user, I want to be able to see the current league table.
-    4. As a user, I want to be able to keep up-to-date with football news on Twitter.
+    3. As a user, I want to be able to search for specific words.
+    4. As a user, I want to be able to see an alphabetical list of words to explore.
+    4. As a user, I want to be able to rate the words I find.
+    4. As a user, I want to be able to share the words I find.
     5. As a user, I want to find something with a bit of humour.
     6. As a user, I want to be able to access your social media accounts.
   * ## Wireframes
     * Wireframe available [here.](docs/desktop-wireframe.pdf)
   * ## Design
     * ## Colour Scheme
-      I wanted a rich colour palette for this website. I went with a palette inspired by an old football kit from the noughties. 
+      I wanted to keep the palette for this website simple. I choose the colour for the font to reflect the county colours of Cork, white and red - blood and bandages.
       
-      I wanted a clean background to allow the sites features to stand out. I used the [Adobe](https://www.adobe.com/ie/creativecloud.html) website to generate a [colour](docs/color-palette.jpeg). This meant that the colours complimented each other nicely. 
+      I chose a background image of an open dictionary to help give the user an idea of the websites function from the outset. It blends seemlessly into the background with an opaque overlay. ![Am I Responsive image of how the website looks across different browser sizes](docs/am-i-responsive.png)
     * ## Favicon 
       I used the [Favicon.io](https://favicon.io/) website to create a favicon for my website. I wanted to continue with the rich theme, so I kept the background colour the same as the header and footer sections. I used the same font for the headings and logo and left it as a simple '24/7', so as not to be too busy.
     * ## Typography
