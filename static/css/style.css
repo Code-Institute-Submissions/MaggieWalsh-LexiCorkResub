@@ -6,3 +6,8 @@
 #red-text{
     color: #8b0000;
 }
+
+/* Flash messages */
+.flashes h4 {
+    line-height: 2;
+}
