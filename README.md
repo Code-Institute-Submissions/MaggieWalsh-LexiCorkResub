@@ -46,7 +46,7 @@ This website is a dictionary of the colloquial language in Co. Cork, Ireland. Th
 
   * ## Project Research
 
-    Slang words from other countries or dialects are really popular on social media. There are entire accounts dedicted to this.
+    Slang words from other countries or dialects are really popular nowadays. There are entire accounts on social media dedicted to this.
 
     * ## Research Analysis
 
