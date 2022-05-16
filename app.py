@@ -19,14 +19,11 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
+@app.route("/index")
 def index():
-    return render_template("index.html", page_title="Browse the dictionary", list_of_letters=[1, 2, 3, 4, 5])
-
-
-@app.route("/get_tasks")
-def get_tasks():
     tasks = mongo.db.tasks.find()
-    return render_template("tasks.html", tasks=tasks)
+    return render_template(
+        "index.html", page_title="Browse the dictionary", tasks=tasks)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -101,11 +98,6 @@ def logout():
     flash("You have been logged out")
     session.pop("user")
     return redirect(url_for("login"))
-
-
-@app.route("/about")
-def about():
-    return render_template("about.html", page_title="About")
 
 
 @app.route("/contact")

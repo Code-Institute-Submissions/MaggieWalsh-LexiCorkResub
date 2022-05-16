@@ -1,8 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-
-    {% for letter in list_of_letters %}
-        <p>{{ letter }}</p>
+    <h3>{{ page_title }}</h3>
+    {% for task in tasks %}
+        {{ task.task_name }}<br>
+        {{ task.category_name }}<br>
+        {{ task.task_description }}<br>
+        {{ task.is_urgent }}<br>
+        {{ task.due_date }}<br>
+        {{ task.category }}<br>
     {% endfor %}
-
 {% endblock %}
