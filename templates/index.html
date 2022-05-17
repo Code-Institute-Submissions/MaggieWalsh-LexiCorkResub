@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-    <h3>{{ page_title }}</h3>
+    <h3 class="col-lg-12 col-md-12 text-center">{{ page_title }}</h3>
     <table id="table" class="col-lg-12 col-md-12 text-center">
         <tr>
-            {% for task in tasks %}
-            <td class="thumbnail"><a aria-label="arsenal fc link" href="#" rel="noopener"><p><strong>{{ task.category }}</strong></p></a></td>
+            {% for letter in alphabetList %}
+            <td class="thumbnail"><a aria-label="" href="#" rel="noopener"><p><strong>{{ letter }}</strong></p></a></td>
             {% endfor %}
         </tr>
     </table>
