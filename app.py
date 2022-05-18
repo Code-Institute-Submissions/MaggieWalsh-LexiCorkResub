@@ -26,7 +26,7 @@ def index():
     return render_template(
         'index.html', page_title="Browse the dictionary", alphabetList=alphabetList)
 
-
+# Try to copy this function to create a new page for words to appear on and link to alphabet
 @app.route("/alphabet/<letter>")
 def alphabet(letter):
     words = mongo.db.dictionary
