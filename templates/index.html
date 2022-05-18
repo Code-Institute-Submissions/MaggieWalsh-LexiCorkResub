@@ -5,7 +5,7 @@
     <table id="table" class="col-lg-12 col-md-12 text-center">
         <tr>
             {% for letter in alphabetList %}
-            <td class="thumbnail"><a aria-label="" href="#" rel="noopener"><p class="rounded-circle bg-dark text-light"><strong>{{ letter }}</strong></p></a></td>
+            <td class="thumbnail"><a aria-label="" href="{{ url_for('alphabet', letter=letter) }}" rel="noopener"><p><strong>{{ letter }}</strong></p></a></td>
             {% endfor %}
         </tr>
     </table>

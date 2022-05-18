@@ -3,10 +3,11 @@
     <h3 class="col-lg-12 col-md-12 text-center">{{ page_title }}</h3>
     <hr />
     <div id="table" class="col-lg-12 col-md-12 text-center">
-        <div>
-            {% for newLetter in alphaLetter %}
-            <td class="thumbnail"><a aria-label="" href="{{ url_for('alphabet') }}" rel="noopener"><p class="rounded-circle bg-dark text-light"><strong>{{ newLetter }}</strong></p></a></td>
-            {% endfor %}
-        </div>
-    </table>
+        {% for letter in alphabetList %}
+        <td class="thumbnail"><a aria-label="" href="{{ url_for('alphabet', letter=letter) }}" rel="noopener"><p><strong>{{ letter }}</strong></p></a></td>
+        {% endfor %}
+    </div>
+    {% for word in words %}
+    {{ word }}
+    {% endfor %}
 {% endblock %}
