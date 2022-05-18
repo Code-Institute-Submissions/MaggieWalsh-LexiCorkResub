@@ -18,7 +18,7 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
-alphabetList = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+alphabetList = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 @app.route("/")
 @app.route("/index")
@@ -30,10 +30,10 @@ def index():
 @app.route("/alphabet/<letter>")
 def alphabet(letter):
     words = mongo.db.dictionary
-    foundWords = words.find({"category" : letter.lower()})
+    foundWords = list(words.find({"category" : letter.lower()}))
     print(letter)
     return render_template(
-        'alphabet.html', page_title="Letter page", alphabetList=alphabetList, words=foundWords)
+        'alphabet.html', page_title=letter, alphabetList=alphabetList, words=foundWords)
 
 
 @app.route("/register", methods=["GET", "POST"])
