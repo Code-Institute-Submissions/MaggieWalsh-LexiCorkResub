@@ -25,6 +25,11 @@ def index():
     return render_template('index.html', page_title="Browse the dictionary", alphabetList=list(string.ascii_uppercase))
 
 
+@app.route("/alphabet")
+def alphabet():
+    return render_template('alphabet.html', page_title="Letter page", alphaLetter=list("Placeholder"))
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
