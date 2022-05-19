@@ -159,6 +159,22 @@ def submit_word():
         new_word=new_word_value, alphabet=alphabetList)
 
 
+@app.errorhandler(404)
+def page_not_found(e):
+    """
+    On 404 error passes user to custom 404 page
+    """
+    return render_template('404.html'), 404
+
+
+@app.errorhandler(500)
+def internal_error(err):
+    """
+    On 500 error passes user to custom 500 page
+    """
+    return render_template('500.html'), 500
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
