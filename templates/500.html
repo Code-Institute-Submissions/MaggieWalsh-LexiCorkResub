@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container centered text-center">
+        <p class="error">500</p>
+        <p class="error-text">
+            We're sorry, there was a problem with the server.
+            <br>
+            <a href="{{ url_for('index') }}" class="mb-5">Return home.</a>
+        </p>
+    </div>
+{% endblock %}
