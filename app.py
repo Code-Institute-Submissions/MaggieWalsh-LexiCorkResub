@@ -5,7 +5,6 @@ from flask import (
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
-import string
 if os.path.exists("env.py"):
     import env
 
@@ -26,7 +25,7 @@ alphabetList = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 def index():
     ''' Adds letters to the home page '''
     return render_template(
-        'index.html', page_title="Browse the dictionary", 
+        'index.html', page_title="Browse the dictionary",
         alphabetList=alphabetList)
 
 
@@ -34,10 +33,13 @@ def index():
 def alphabet(letter):
     ''' Adds letters to the alphabet page '''
     words = mongo.db.dictionary
-    found_words = list(words.find({"category" : letter.lower()}).sort("word"))
+    found_words = list(words.find({"category": letter.lower()}).sort("word"))
     print(letter)
     return render_template(
-        'alphabet.html', page_title=letter, alphabetList=alphabetList, words=found_words)
+        'alphabet.html',
+        page_title=letter,
+        alphabetList=alphabetList,
+        words=found_words)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -76,11 +78,11 @@ def login():
         if existing_user:
             # ensure hashed password matches user input
             if check_password_hash(
-                existing_user["password"], request.form.get("password")):
-                    session["user"] = request.form.get("username").lower()
-                    flash("Welcome, {}".format(
+                    existing_user["password"], request.form.get("password")):
+                session["user"] = request.form.get("username").lower()
+                flash("Welcome, {}".format(
                         request.form.get("username")))
-                    return redirect(url_for(
+                return redirect(url_for(
                         "profile", username=session["user"]))
             else:
                 # invalid password match
@@ -134,12 +136,11 @@ def submit_word():
         if not existing_word:
             word = {
                 "word": request.form.get("word").lower(),
-                "category": request.form.get("category"),
+                "category": request.form.get("category").lower(),
                 "definition": request.form.get("definition"),
                 "created": session["user"]
             }
             mongo.db.dictionary.insert_one(word)
-        
         # if new word is added successfully, redirect user to dashboard
             flash(
                 "Word added successfully.")
@@ -155,10 +156,10 @@ def submit_word():
     return render_template(
         "submit_word.html",
         categories=categories,
-        new_word=new_word_value)
+        new_word=new_word_value, alphabet=alphabetList)
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
             debug=True)
-
