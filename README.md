@@ -1,4 +1,4 @@
-# 24/7 Scores
+# LexiCork
 
 I created this website for the 3rd Milestone Project on Data Centric Development, at Code Institute's Diploma in Software Development course. 
 
