@@ -15,8 +15,8 @@
             <div class="form-group">
                 <label for="category">Category</label>
                 <select class="form-control" name="category" id="category">
-                    {% for category in categories %}
-                    <option value="{{category.category}}">{{category.category}}</option>
+                    {% for letter in alphabet %}
+                    <option value="{{letter}}">{{letter}}</option>
                     {% endfor %}
                 </select>
             </div>
