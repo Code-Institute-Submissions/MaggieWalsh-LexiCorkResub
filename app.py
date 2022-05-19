@@ -135,7 +135,8 @@ def submit_word():
             word = {
                 "word": request.form.get("word").lower(),
                 "category": request.form.get("category"),
-                "definition": request.form.get("definition")
+                "definition": request.form.get("definition"),
+                "created": session["user"]
             }
             mongo.db.dictionary.insert_one(word)
         
