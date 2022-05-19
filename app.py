@@ -34,7 +34,7 @@ def index():
 def alphabet(letter):
     ''' Adds letters to the alphabet page '''
     words = mongo.db.dictionary
-    found_words = list(words.find({"category" : letter.lower()}))
+    found_words = list(words.find({"category" : letter.lower()}).sort("word"))
     print(letter)
     return render_template(
         'alphabet.html', page_title=letter, alphabetList=alphabetList, words=found_words)
@@ -150,7 +150,7 @@ def submit_word():
             flash("This word already exists, please submit a new word")
             return redirect(url_for("submit_word"))
 
-    categories = mongo.db.dictionary.find()
+    categories = mongo.db.dictionary.find().sort("word")
     return render_template(
         "submit_word.html",
         categories=categories,
