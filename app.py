@@ -141,8 +141,7 @@ def submit_word():
         
         # if new word is added successfully, redirect user to dashboard
             flash(
-                "Word added successfully. Once reviewed by the editors,\
-                     it will display in the dictionary")
+                "Word added successfully.")
             return redirect(url_for("index"))
 
         # if the word already exists, redirect to new instance of the form
