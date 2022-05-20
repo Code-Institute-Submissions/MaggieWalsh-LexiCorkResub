@@ -4,7 +4,7 @@ I created this website for the 3rd Milestone Project on Data Centric Development
 
 Visit the live [website.](https://lexicork.herokuapp.com/)
 
-This website is a dictionary of the colloquial language in Co. Cork, Ireland. The name is taken from the word 'lexicon', which is another word for dictionary and the word Cork replacing the end for a play on words that hopefully gives an idea of what the website is about.
+This website is a dictionary of the colloquial language in Co. Cork, Ireland. The name is a portmanteau of the word 'lexicon', which is another word for dictionary and the word 'Cork' replacing the end for a play on words that *hopefully* gives an idea of what the website is about.
 
 ![Am I Responsive image of how the website looks across different browser sizes](docs/am-i-responsive.png)
 
@@ -32,7 +32,6 @@ This website is a dictionary of the colloquial language in Co. Cork, Ireland. Th
     * [Additional Testing](#additional-testing)
     * [Resolved Bugs](#resolved-bugs)
   * [Deployment](#deployment)
-    * [Forking a GitHub Repository](#forking-a-github-repository)
     * [Forking a GitHub Repository](#forking-a-github-repository)
     * [Cloning a repository using the command line](#cloning-a-repository-using-the-command-line)
   * [Credits](#credits)
@@ -110,10 +109,9 @@ This website is a dictionary of the colloquial language in Co. Cork, Ireland. Th
     * ## Languages
       * [HTML5](https://en.wikipedia.org/wiki/HTML5)
       * [CSS](https://en.wikipedia.org/wiki/CSS)
-      * [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
+      * [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
     * ## Frameworks and Libraries
       * [Bootstrap v.5](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
-      * [!bcdn5](https://marketplace.visualstudio.com/items?itemName=eventyret.bootstrap-4-cdn-snippet) extension
       * [Google Fonts](https://fonts.google.com/)
       * [Font Awesome](https://fontawesome.com/)
       * [Adobe](https://www.adobe.com/ie/creativecloud.html)
