@@ -28,6 +28,9 @@
             <div class="text-center">
                 <button type="submit" id="submit-word" class="btn btn-dark rounded">Submit Word</button>
             </div>
+            <div class="text-center">
+                <a href="{{ url_for('profile', username=session['user']) }}" class="btn btn-danger rounded mt-3">Cancel</a>
+            </div>
         </form>
     </div>
 </div>
