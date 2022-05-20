@@ -118,6 +118,7 @@ def logout():
     return redirect(url_for("login"))
 
 
+# function adapted from another source listed here -
 @app.route("/submit_word", methods=["GET", "POST"])
 def submit_word():
     ''' Create new word '''

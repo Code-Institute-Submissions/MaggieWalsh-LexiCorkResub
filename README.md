@@ -200,6 +200,7 @@ This website is a dictionary of the colloquial language in Co. Cork, Ireland. Th
   * ## Credits
     * ## Code
       * Bootstrap helped structure the website in order to ensure it's responsivity.
+      * Some functionality was generated in assistance with the mini projects.
       * All code is my own unless explicitly stated in my code files in a comment.
       * Credit to other sources for some solutions that I have commented in my code.
     * ## Acknowledgements
