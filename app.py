@@ -3,7 +3,7 @@ from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
-from bson.objectid import ObjectId
+# from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
@@ -46,7 +46,7 @@ def alphabet(letter):
 def register():
     ''' Adds registration function '''
     if request.method == "POST":
-        # check if username exists
+        # check db for username
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
 
@@ -71,12 +71,11 @@ def register():
 def login():
     ''' Creates login function '''
     if request.method == "POST":
-        # check if username exists in db
+        # check db for username
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
 
         if existing_user:
-            # ensure hashed password matches user input
             if check_password_hash(
                     existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
@@ -85,12 +84,12 @@ def login():
                 return redirect(url_for(
                         "profile", username=session["user"]))
             else:
-                # invalid password match
+                # if password not in db
                 flash("Incorrect Username and/or Password")
                 return redirect(url_for("login"))
 
         else:
-            # username doesn't exist
+            # if username not in db
             flash("Incorrect Username and/or Password")
             return redirect(url_for("login"))
 
@@ -99,8 +98,8 @@ def login():
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
-    ''' Dynamically creates a page for the user '''
-    # grab the session user's username from db
+    ''' Dynamically creates profile page for new user '''
+    # user's name retrieved from db
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
 
@@ -113,17 +112,16 @@ def profile(username):
 @app.route("/logout")
 def logout():
     ''' Logs user out '''
-    # remove user from session cookie
+    # log user out
     flash("You have been logged out")
     session.pop("user")
     return redirect(url_for("login"))
 
 
-# Submit new word
 @app.route("/submit_word", methods=["GET", "POST"])
 def submit_word():
-    ''' Submit new word '''
-    # if user is in session, submit new word
+    ''' Create new word '''
+    # if user is logged in, allow submit new word
     if request.method == "GET":
         new_word_value = request.args.get('new_word')
         if new_word_value is not None:
@@ -141,15 +139,14 @@ def submit_word():
                 "created": session["user"]
             }
             mongo.db.dictionary.insert_one(word)
-        # if new word is added successfully, redirect user to dashboard
+        # on success, return user to home page
             flash(
                 "Word added successfully.")
             return redirect(url_for("index"))
 
-        # if the word already exists, redirect to new instance of the form
-        # and inform the word exists
+        # redirect if word exists
         else:
-            flash("This word already exists, please submit a new word")
+            flash("Looks like this word already exists, try another")
             return redirect(url_for("submit_word"))
 
     categories = mongo.db.dictionary.find().sort("word")
@@ -160,22 +157,22 @@ def submit_word():
 
 
 @app.errorhandler(404)
-def page_not_found(e):
-    """
-    On 404 error passes user to custom 404 page
-    """
+def page_not_found(error):
+    '''
+    If 404 error occurs, user directed to custom 404 page
+    '''
     return render_template('404.html'), 404
 
 
 @app.errorhandler(500)
 def internal_error(err):
-    """
-    On 500 error passes user to custom 500 page
-    """
+    '''
+    If 404 error occurs, user directed to custom 404 page
+    '''
     return render_template('500.html'), 500
 
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=True)
+            debug=False)
