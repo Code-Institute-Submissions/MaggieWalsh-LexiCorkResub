@@ -69,12 +69,9 @@ This website is a dictionary of the colloquial language in Co. Cork, Ireland. Th
   * ## User Stories
     1. As a user visiting the site for the first time, I want to navigate the site intuitively.
     2. As a user, I want to know what information this site provides.
-    3. As a user, I want to be able to search for specific words.
-    4. As a user, I want to be able to see an alphabetical list of words to explore.
-    4. As a user, I want to be able to rate the words I find.
-    4. As a user, I want to be able to share the words I find.
-    5. As a user, I want to find something with a bit of humour.
-    6. As a user, I want to be able to access your social media accounts.
+    3. As a user, I want to be able to see an alphabetical list of words to explore.
+    4. As a user, I want to find something with a bit of humour.
+    5. As a user, I want to be able to access your social media accounts.
   * ## Wireframes
     * Wireframe available [here.](docs/desktop-wireframe.pdf)
   * ## Design
@@ -83,48 +80,31 @@ This website is a dictionary of the colloquial language in Co. Cork, Ireland. Th
       
       I chose a background image of an open dictionary to help give the user an idea of the websites function from the outset. It blends seemlessly into the background with an opaque overlay. ![Am I Responsive image of how the website looks across different browser sizes](docs/am-i-responsive.png)
     * ## Favicon 
-      I used the [Favicon.io](https://favicon.io/) website to create a favicon for my website. I wanted to continue with the rich theme, so I kept the background colour the same as the header and footer sections. I used the same font for the headings and logo and left it as a simple '24/7', so as not to be too busy.
+      I used the [Favicon.io](https://favicon.io/) website to create a favicon for my website.
     * ## Typography
-      I wanted a simple font for the website. I liked the contrast between the font for the headings which is Anton, and the font for the rest of the website.
+      I wanted a simple font for the website.
     * ## Layout
-      I decided on a single-page website because I felt like all the components flow nicely into eachother. I opted for a larger than 'standard' footer as I feel like a more substantial footer looks better.
+      Layout description here
   * ## Features
     * ## Existing Features
       * The website has the following features from top to bottom :
-        * Logo - 24/7 Scores - Clean font. Simple and descriptive about the purpose of the website.
+        * Logo
 
           ![Logo](docs/logo.png)
 
-        * Content - At the top of the site there is a table of all the premier league teams. They are identified by their club badges. Each badge has a link that opens a new tab with the relevant teams home website.
+        * Content
 
-          ![Club Sites](docs/club-sites.png)
+          ![Content](docs/content.png)
 
-          Next there is a table with the current league standings. This contains the team name, position, games played, games won, games lost, games drawn, goal difference and points.
-
-          ![League Table](docs/league-table.png)
-
-          Below this there is a funny football quote generator. When you click 'New Quote', a new quote is generated.
-
-          ![Funny Quotes](docs/quotes.png)
-
-          Below this is a map which shows all the locations of the premier league stadiums. When you click on a marker an information window pops open to give a brief description.
-
-          ![Map](docs/map.png)
-
-          To the right is an embedded Twitter feed containing top Premier League Twitter accounts, from clubs to reporters and players to fan.
-
-          ![Twitter Feed](docs/twitter.png)
+          Description
 
         * Footer - The footer contains the website name and a brief description of the purpose of the website. 
 
           ![Footer](docs/footer.png)
 
     * ## Features to be Implemented in Future
-      * Ability to choose other football leagues around the world i.e La Liga, Ligue 1, Bundesliga etc.
-      * Table with upcoming matches.
-      * Form from last five matches added to league table.
-      * Player stats.
-      * Football top news stories API.
+      * Ability to share words
+      * Ability to rate words
       * Functionality to login and remember your preferences.
   * ## Technologies Used
     * ## Languages
@@ -149,47 +129,30 @@ This website is a dictionary of the colloquial language in Co. Cork, Ireland. Th
       1. As a user visiting the site for the first time, I want to navigate the site intuitively.
          * A user can navigate around the site with ease. All components work as they should.
       2. As a user, I want to know what information this site provides.
-         * A user can immediately see that there are multiple components to the page, league standings, twitter feed, map, quote generator and links to Premier League club websites. There is also a short summary of the purpose of the site in the footer.
-      3. As a user, I want to be able to see the current League Table.
-         * A user can clearly see that the league table is the most prominent component of the website.
-      4. As a user, I want to be able to keep up-to-date with football news on Twitter.
-         * A user can view a live TWitter feed along the right-hand side of the site, on desktop. On mobile it is pushed to the bottom of the siye.
-      5. As a user, I want to find something with a bit of humour.
-         * A user can generate funny quotes from the Funny Quote Generator below the League Table
-      6. As a user, I want to be able to access your social media accounts.
-         * A user can access the companies social media links via the footer.
+         * A user can immediately see that there are multiple components to the page.
+      3. As a user, I want to be able.
+         * A user can.
+      4. As a user, I want to be able.
+         * A user can.
+      5. As a user, I want to.
+         * A user can.
     * ## Manual Testing 
-      * Club Sites
-        * Club badges are visible.
-        * Each badge serves as a link to the respective clubs home website, which opens in a new tab.
-        * If error occurs with data loading, error message appears.
-        * Hover effect works on badges.
-        * Club Sites are removed on screen size 767px and smaller.
-      * League Table
-        * While data is loading, spinner appears.
-        * Data loads into table in the correct order.
-        * If error occurs with data loading, error message appears.
-        * Title attribute provides explanation for headings that are shortened
-      * Funny Quotes
-        * Quote is generated on page load.
-        * Quote is generated when 'New Quote' button is clicked.
-      * Map
-        * Loads correctly.
-        * Displays markers for location of stadium for each Premier League Team.
-        * When a marker is clicked an information window pops open to give the name of the stadium, and the club whose homeground it is.
-      * Twitter Feed
-        * Loads data.
-        * Is restricted to 3 tweets to keep the flow of the page.
-        * Clicking on a Tweet brings you to Twitter, which opens in a new tab.
-      * Footer
-        * Social icons open links in new tabs.
-        * 24/7-Scores.com link reloads page.
+      * Home
+        * Test.
+      * Profile
+        * Test.
+      * Register
+        * Test.
+      * Login
+        * Test.
+      * Logout
+        * Test.
+      * Submit Word
+        * Test.
     * ## Additional Testing 
       * [W3C - Jigsaw Validator](https://jigsaw.w3.org/css-validator/)
 
       * [W3C - NU HTML Checker](https://validator.w3.org/nu/)
-
-      * [JSHint - HTML Validator](https://jshint.com/)
 
       * Lighthouse Reports
       
@@ -197,20 +160,13 @@ This website is a dictionary of the colloquial language in Co. Cork, Ireland. Th
 
        ![Desktop](docs/desktop.png)
     * ## Resolved Bugs
-      * I originally started this project with another [repository](https://github.com/MaggieWalsh/24-7_Scores). An error occured which resulted in me having to merge, and pull despite never intending to. The matter was unresolveable given the timeframe and my knowledge restrictions. I made the decision to begin again, with a new repository. I will leave the original unedited in order for it to be checked.
+      * Description.
 
-      * I noticed stray ```, _``` in some places on my code. I eventually figured out that it was because of whitespace in my code. Which resolved once I deleted it.
+      * Description.
 
-      * My map and Twitter feed were overlapping eachother. This resolved it:
-      ```
-        .col-lg-8 {
-        display: grid; 
-        grid-template-rows: 1fr 0.3fr 1fr;
-        }
-        
-     ![Map](docs/map-twitter-overlap.png)
-      * The table was rendering strangely. In order to fix this I removed the fixed position which allowed the data to fit into the table correctly.
-    ![Table](docs/table.png)
+     ![Issue](docs/issue.png)
+      * Description.
+    ![Footer](docs/footer.png)
       * In order to improve accessibility, I added *aria labels* to all non-text links.
       * In order to improve accessibility, I added *aria-hidden true* to Font Awesome icons that were not fucntional.
       * In order to improve best practices, I added *rel-noopener* to the untrusted external links.
@@ -247,8 +203,6 @@ This website is a dictionary of the colloquial language in Co. Cork, Ireland. Th
     * ## Code
       * Bootstrap helped structure the website in order to ensure it's responsivity.
       * All code is my own unless explicitly stated in my code files in a comment.
-      * Credit to [MDB](https://mdbootstrap.com/) for the footer that I adapted.
-      * Credit to Stack Overflow for some solutions that I have commented in my code.
+      * Credit to other sources for some solutions that I have commented in my code.
     * ## Acknowledgements
       * A very special thank you to my mentor Richard Wells.  
-      * Thanks to my peers in my Discord group, who reviewed my project and pointed out a bug that wasn't visible on any of my own tests.
