@@ -3,7 +3,7 @@ from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
-# from bson.objectid import ObjectId
+from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
@@ -118,16 +118,12 @@ def logout():
     return redirect(url_for("login"))
 
 
-# function adapted from another source listed here -
 @app.route("/submit_word", methods=["GET", "POST"])
 def submit_word():
-    ''' Create new word '''
-    # if user is logged in, allow submit new word
     if request.method == "GET":
         new_word_value = request.args.get('new_word')
         if new_word_value is not None:
             new_word_value = new_word_value.lower()
-
     if request.method == "POST":
         existing_word = mongo.db.dictionary.find_one(
             {"word": request.form.get("word").lower()})
@@ -135,26 +131,32 @@ def submit_word():
         if not existing_word:
             word = {
                 "word": request.form.get("word").lower(),
-                "category": request.form.get("category").lower(),
+                "category_name": request.form.get("category").lower(),
                 "definition": request.form.get("definition"),
-                "created": session["user"]
-            }
+                "use": request.form.get("use"),
+                "created_by": session["user"]
+                }
             mongo.db.dictionary.insert_one(word)
-        # on success, return user to home page
-            flash(
-                "Word added successfully.")
+            flash("Word added successfully.")
             return redirect(url_for("index"))
-
-        # redirect if word exists
+            # redirect if word exists
         else:
             flash("Looks like this word already exists, try another")
             return redirect(url_for("submit_word"))
 
-    categories = mongo.db.dictionary.find().sort("word")
+    words = list(mongo.db.dictionary.find())
     return render_template(
         "submit_word.html",
-        categories=categories,
-        new_word=new_word_value, alphabet=alphabetList)
+        dictionary=words,
+        alphabet=alphabetList)
+
+
+@app.route("/edit_word/<word_id>", methods=["GET", "POST"])
+def edit_word(word_id):
+    word = mongo.db.dictionary.find_one({"_id": ObjectId(word_id)})
+
+    words = list(mongo.db.dictionary.find())
+    return render_template("edit_word.html", words=words, dictionary=words, alphabet=alphabetList)
 
 
 @app.errorhandler(404)
@@ -176,4 +178,4 @@ def internal_error(err):
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=False)
+            debug=True)

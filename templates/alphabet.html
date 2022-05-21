@@ -17,8 +17,9 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">{{ word.word|capitalize }}</h5>
-            <p class="card-text">{{ word.definition }}</p>         
-            <p class="card-text"><em>Submitted by : {{ word.created|capitalize }}</em></p>         
+            <p class="card-text">{{ word.definition }}</p>  
+            <p class="card-text">{{ word.use }}</p>
+            <p class="card-text"><em>Submitted by : {{ word.created_by|capitalize }}</em></p>         
           </div>
         </div>
         {% endfor %}
