@@ -9,8 +9,8 @@
           <input id="word" name="word" type="text" maxlength="50" class="form-control" id="exampleFormControlInput1" placeholder="" required>
         </div>
         <div class="form-group">
-            <label for="category">Category</label>
-            <select class="form-control" name="category" id="category" required>
+            <label for="category_name">Category</label>
+            <select class="form-control" name="category_name" id="category_name" required>
                 {% for letter in alphabet %}
                 <option value="{{letter}}">{{letter}}</option>
                 {% endfor %}
@@ -18,15 +18,17 @@
         </div>
         <div class="form-group">
           <label for="definition">Definition</label>
-          <textarea class="definition" id="definition" name="definition" maxlength="200" rows="2" required></textarea>
+          <textarea class="definition form-control" id="definition" name="definition" maxlength="200" rows="2" required></textarea>
         </div>
         <div class="form-group">
           <label for="use">Use</label>
-          <textarea class="form-control" id="use" name="use" maxlength="200" rows="2" required></textarea>
+          <textarea class="use form-control" id="use" name="use" maxlength="200" rows="2" required></textarea>
         </div>
+
         <div class="text-center">
             <button type="submit" id="submit-word" class="btn btn-dark rounded">Edit Word</button>
         </div>
+
       </form>
 
 {% endblock %}

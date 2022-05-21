@@ -33,7 +33,8 @@ def index():
 def alphabet(letter):
     ''' Adds letters to the alphabet page '''
     words = mongo.db.dictionary
-    found_words = list(words.find({"category": letter.lower()}).sort("word"))
+    found_words = list(
+        words.find({"category_name": letter.lower()}).sort("word"))
     print(letter)
     return render_template(
         'alphabet.html',
@@ -154,9 +155,8 @@ def submit_word():
 @app.route("/edit_word/<word_id>", methods=["GET", "POST"])
 def edit_word(word_id):
     word = mongo.db.dictionary.find_one({"_id": ObjectId(word_id)})
-
     words = list(mongo.db.dictionary.find())
-    return render_template("edit_word.html", words=words, dictionary=words, alphabet=alphabetList)
+    return render_template("edit_word.html", word=word, dictionary=words, alphabet=alphabetList)
 
 
 @app.errorhandler(404)
