@@ -103,13 +103,10 @@ def profile(username):
     # user's name retrieved from db
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    created_by = mongo.db.dictionary.find_one(
-        {"created_by": session["user"]})["created_by"]
-    words = list(mongo.db.dictionary.find())
 
     if session["user"]:
         return render_template(
-            "profile.html", username=username, created_by=created_by)
+            "profile.html", username=username)
 
     return redirect(url_for("login"))
 
