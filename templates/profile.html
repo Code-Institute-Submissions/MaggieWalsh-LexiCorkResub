@@ -10,10 +10,28 @@
             </div>
         </div>
     </div>
-    <hr>
+    {% for word in words %}
+    {% if session.user|lower == word.created_by|lower %}
+        <div class="card-deck">
+            
+            <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">{{ word.word|capitalize }}</h5>
+                <p class="card-text"><strong>Definition :</strong>{{ word.definition }}</p>  
+                <p class="card-text"><strong>Use :</strong>Use :{{ word.use }}</p>
+                <p class="card-text"><em>Submitted by : {{ word.created_by|capitalize }}</em></p>         
+            </div>
+            </div>
+            
+        </div>
+    {% endif %}
+    {% endfor %}
     <!-- url below is throwing an error that word isn't defined -->
     <div class="">
-        <a href="" class="btn btn-danger rounded">Edit</a>
+        <a href="" class="btn-sm btn-danger rounded">Edit</a>
+    </div>
+    <div class="">
+        <a href="" class="btn-sm btn-danger rounded">Delete</a>
     </div>
 
 {% endblock %}
