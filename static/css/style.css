@@ -1,21 +1,7 @@
-/* .col-md-5 img {
-    width: 100%;
-} */
-
 /* Font colour for logo */
 #red-text{
     color: #8b0000;
 }
-
-/* Fix overflow on sm screen */
-
-@media (max-width: 450px) {
-    table#table.col-lg-12.col-md-12.text-center{
-        font-size: 15px;
-    }
-    }
-
-
 
 /* Card styling - https://www.w3schools.com/howto/howto_css_cards.asp */
 .card {
@@ -38,7 +24,6 @@
 .flashes h4 {
     line-height: 2;
 }
-
 
 /* Limit the number of cards to a deck
 https://stackoverflow.com/questions/38895106/how-to-limit-number-of-columns-of-card-deck */
@@ -64,3 +49,10 @@ https://stackoverflow.com/questions/38895106/how-to-limit-number-of-columns-of-c
 .error-text {
     font-size: 3vw;
 }
+
+/* Fix overflow on sm screen */
+@media (max-width: 450px) {
+    table#table.col-lg-12.col-md-12.text-center{
+        font-size: 15px;
+    }
+    }

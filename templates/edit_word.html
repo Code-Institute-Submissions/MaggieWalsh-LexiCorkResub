@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+  <!-- Edit Word -->
   {% for word in words %}
     <form class="" method="POST" action="{{url_for('edit_word', word_id=word.id)}}">
   {% endfor %}

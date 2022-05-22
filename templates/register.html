@@ -1,13 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
-
+    <!-- Register Page -->
     <main class="mb-4">
+        <!-- Card -->
         <div class="card">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
-                        <h3 class="center-align">Register</h3>
+                        <h3 class="center-align mt-5">Register</h3>
                         <div class="my-5">
+                            <!-- Form -->
                             <form id="contactForm" method="POST" action="{{ url_for('register') }}">
                                 <div class="form-floating">
                                     <i class="fas fa-user-plus prefix"></i>
@@ -32,6 +34,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- Link to Login if Already Registered -->
                 <div class="row">
                     <div class="col s12">
                         <p class="center-align">
