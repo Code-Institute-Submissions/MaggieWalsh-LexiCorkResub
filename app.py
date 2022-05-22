@@ -1,10 +1,9 @@
 import os
-from flask import (
-    Flask, flash, render_template,
-    redirect, request, session, url_for)
+from flask import Flask, flash, render_template, redirect, request, session, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
+
 if os.path.exists("env.py"):
     import env
 
@@ -23,33 +22,31 @@ alphabetList = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 @app.route("/")
 @app.route("/index")
 def index():
-    ''' Adds letters to the home page '''
+    """Adds letters to the home page"""
     return render_template(
-        'index.html', page_title="Browse the dictionary",
-        alphabetList=alphabetList)
+        "index.html", page_title="Browse the dictionary", alphabetList=alphabetList
+    )
 
 
 @app.route("/alphabet/<letter>")
 def alphabet(letter):
-    ''' Adds letters to the alphabet page '''
+    """Adds letters to the alphabet page"""
     words = mongo.db.dictionary
-    found_words = list(
-        words.find({"category_name": letter.lower()}).sort("word"))
+    found_words = list(words.find({"category_name": letter.lower()}).sort("word"))
     print(letter)
     return render_template(
-        'alphabet.html',
-        page_title=letter,
-        alphabetList=alphabetList,
-        words=found_words)
+        "alphabet.html", page_title=letter, alphabetList=alphabetList, words=found_words
+    )
 
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    ''' Adds registration function '''
+    """Adds registration function"""
     if request.method == "POST":
         # check db for username
         existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
+            {"username": request.form.get("username").lower()}
+        )
 
         if existing_user:
             flash("Username already exists")
@@ -57,7 +54,7 @@ def register():
 
         register = {
             "username": request.form.get("username").lower(),
-            "password": generate_password_hash(request.form.get("password"))
+            "password": generate_password_hash(request.form.get("password")),
         }
         mongo.db.users.insert_one(register)
 
@@ -70,20 +67,20 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    ''' Creates login function '''
+    """Creates login function"""
     if request.method == "POST":
         # check db for username
         existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
+            {"username": request.form.get("username").lower()}
+        )
 
         if existing_user:
             if check_password_hash(
-                    existing_user["password"], request.form.get("password")):
+                existing_user["password"], request.form.get("password")
+            ):
                 session["user"] = request.form.get("username").lower()
-                flash("Welcome, {}".format(
-                        request.form.get("username")))
-                return redirect(url_for(
-                        "profile", username=session["user"]))
+                flash("Welcome, {}".format(request.form.get("username")))
+                return redirect(url_for("profile", username=session["user"]))
             else:
                 # if password not in db
                 flash("Incorrect Username and/or Password")
@@ -99,21 +96,19 @@ def login():
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
-    ''' Dynamically creates profile page for new user '''
+    """Dynamically creates profile page for new user"""
     # user's name retrieved from db
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
+    username = mongo.db.users.find_one({"username": session["user"]})["username"]
 
     if session["user"]:
-        return render_template(
-            "profile.html", username=username)
+        return render_template("profile.html", username=username)
 
     return redirect(url_for("login"))
 
 
 @app.route("/logout")
 def logout():
-    ''' Logs user out '''
+    """Logs user out"""
     # log user out
     flash("You have been logged out")
     session.pop("user")
@@ -122,14 +117,15 @@ def logout():
 
 @app.route("/submit_word", methods=["GET", "POST"])
 def submit_word():
-    ''' Submit word '''
+    """Submit word"""
     if request.method == "GET":
-        new_word_value = request.args.get('new_word')
+        new_word_value = request.args.get("new_word")
         if new_word_value is not None:
             new_word_value = new_word_value.lower()
     if request.method == "POST":
         existing_word = mongo.db.dictionary.find_one(
-            {"word": request.form.get("word").lower()})
+            {"word": request.form.get("word").lower()}
+        )
 
         if not existing_word:
             word = {
@@ -137,8 +133,8 @@ def submit_word():
                 "category_name": request.form.get("category").lower(),
                 "definition": request.form.get("definition"),
                 "use": request.form.get("use"),
-                "created_by": session["user"]
-                }
+                "created_by": session["user"],
+            }
             mongo.db.dictionary.insert_one(word)
             flash("Word added successfully.")
             return redirect(url_for("index"))
@@ -148,39 +144,42 @@ def submit_word():
             return redirect(url_for("submit_word"))
 
     words = list(mongo.db.dictionary.find())
-    return render_template(
-        "submit_word.html",
-        dictionary=words,
-        alphabet=alphabetList)
+    return render_template("submit_word.html", dictionary=words, alphabet=alphabetList)
 
 
 @app.route("/edit_word/<word_id>", methods=["GET", "POST"])
 def edit_word(word_id):
-    ''' Edit word '''
+    """Edit word"""
+    dictionary = mongo.db.dictionary
     if request.method == "POST":
-        existing_word = mongo.db.dictionary.find_one(
-            {"word": request.form.get("word").lower()})
+        print('bob')
+        existing_word = mongo.db.dictionary.find_one({"_id": ObjectId(word_id)})
+        print(request.form.get("category"))
 
-        if not existing_word:
+        if existing_word:
             submit = {
-                "word": request.form.get("word").lower(),
+                "word": request.form.get("word"),
                 "category_name": request.form.get("category").lower(),
                 "definition": request.form.get("definition"),
                 "use": request.form.get("use"),
-                "created_by": session["user"]
-                }
-            mongo.db.dictionary.update({"_id": ObjectId(word_id)}, submit)
+                "created_by": session["user"],
+            }
+            dictionary.replace_one({"_id": ObjectId(word_id)}, submit)
             flash("Word updated successfully.")
+            return render_template(
+        "index.html", page_title="Browse the dictionary", alphabetList=alphabetList
+    )
 
-    word = mongo.db.dictionary.find_one({"_id": ObjectId(word_id)})
-    words = list(mongo.db.dictionary.find())
+    word = dictionary.find_one({"_id": ObjectId(word_id)})
+
     return render_template(
-        "edit_word.html", word=word, dictionary=words, alphabet=alphabetList)
+        "edit_word.html", word=word, alphabet=alphabetList
+    )
 
 
 @app.route("/delete_word/<word_id>")
 def delete_word(word_id):
-    ''' Delete word '''
+    """Delete word"""
     mongo.db.dictionary.remove({"_id": ObjectId(word_id)})
     flash("Word succesfully deleted!")
     return redirect(url_for("profile"))
@@ -188,21 +187,19 @@ def delete_word(word_id):
 
 @app.errorhandler(404)
 def page_not_found(error):
-    '''
+    """
     If 404 error occurs, user directed to custom 404 page
-    '''
-    return render_template('404.html'), 404
+    """
+    return render_template("404.html"), 404
 
 
 @app.errorhandler(500)
 def internal_error(err):
-    '''
+    """
     If 404 error occurs, user directed to custom 404 page
-    '''
-    return render_template('500.html'), 500
+    """
+    return render_template("500.html"), 500
 
 
 if __name__ == "__main__":
-    app.run(host=os.environ.get("IP"),
-            port=int(os.environ.get("PORT")),
-            debug=False)
+    app.run(host=os.environ.get("IP"), port=int(os.environ.get("PORT")), debug=False)

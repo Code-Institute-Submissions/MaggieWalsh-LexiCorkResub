@@ -27,6 +27,11 @@
             <button type="submit" id="submit-word" class="btn btn-dark rounded">Submit Word</button>
         </div>
       </form>
+      {% for word in word %}
+      <div class="">
+        <a href="{{url_for('edit_word', word_id=word._id)}}" class="btn-sm btn-danger rounded">Edit</a>
+      </div>
+      {% endfor %}
 
 
 {% endblock %}
