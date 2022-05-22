@@ -122,6 +122,7 @@ def logout():
 
 @app.route("/submit_word", methods=["GET", "POST"])
 def submit_word():
+    ''' Submit word '''
     if request.method == "GET":
         new_word_value = request.args.get('new_word')
         if new_word_value is not None:
@@ -155,6 +156,7 @@ def submit_word():
 
 @app.route("/edit_word/<word_id>", methods=["GET", "POST"])
 def edit_word(word_id):
+    ''' Edit word '''
     if request.method == "POST":
         existing_word = mongo.db.dictionary.find_one(
             {"word": request.form.get("word").lower()})
@@ -172,11 +174,13 @@ def edit_word(word_id):
 
     word = mongo.db.dictionary.find_one({"_id": ObjectId(word_id)})
     words = list(mongo.db.dictionary.find())
-    return render_template("edit_word.html", word=word, dictionary=words, alphabet=alphabetList)
+    return render_template(
+        "edit_word.html", word=word, dictionary=words, alphabet=alphabetList)
 
 
 @app.route("/delete_word/<word_id>")
 def delete_word(word_id):
+    ''' Delete word '''
     mongo.db.dictionary.remove({"_id": ObjectId(word_id)})
     flash("Word succesfully deleted!")
     return redirect(url_for("profile"))
@@ -201,4 +205,4 @@ def internal_error(err):
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=True)
+            debug=False)
