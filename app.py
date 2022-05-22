@@ -103,9 +103,13 @@ def profile(username):
     # user's name retrieved from db
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
+    created_by = mongo.db.dictionary.find_one(
+        {"created_by": session["user"]})["created_by"]
+    words = list(mongo.db.dictionary.find())
 
     if session["user"]:
-        return render_template("profile.html", username=username)
+        return render_template(
+            "profile.html", username=username, created_by=created_by)
 
     return redirect(url_for("login"))
 
@@ -154,9 +158,31 @@ def submit_word():
 
 @app.route("/edit_word/<word_id>", methods=["GET", "POST"])
 def edit_word(word_id):
+    if request.method == "POST":
+        existing_word = mongo.db.dictionary.find_one(
+            {"word": request.form.get("word").lower()})
+
+        if not existing_word:
+            submit = {
+                "word": request.form.get("word").lower(),
+                "category_name": request.form.get("category").lower(),
+                "definition": request.form.get("definition"),
+                "use": request.form.get("use"),
+                "created_by": session["user"]
+                }
+            mongo.db.dictionary.update({"_id": ObjectId(word_id)}, submit)
+            flash("Word updated successfully.")
+
     word = mongo.db.dictionary.find_one({"_id": ObjectId(word_id)})
     words = list(mongo.db.dictionary.find())
     return render_template("edit_word.html", word=word, dictionary=words, alphabet=alphabetList)
+
+
+@app.route("/delete_word/<word_id>")
+def delete_word(word_id):
+    mongo.db.dictionary.remove({"_id": ObjectId(word_id)})
+    flash("Word succesfully deleted!")
+    return redirect(url_for("profile"))
 
 
 @app.errorhandler(404)
