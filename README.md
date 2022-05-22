@@ -6,7 +6,7 @@ Visit the live [website.](https://lexicork.herokuapp.com/)
 
 This website is a dictionary of the colloquial language in Co. Cork, Ireland. The name is a portmanteau of the word 'lexicon', which is another word for dictionary and the word 'Cork' replacing the end for a play on words that *hopefully* gives an idea of what the website is about.
 
-![Am I Responsive image of how the website looks across different browser sizes](docs/am-i-responsive.png)
+![Am I Responsive image of how the website looks across different browser sizes](static/img/mockup.png)
 
 # Table of Contents
   * [UX and UI](#ux-and-ui)

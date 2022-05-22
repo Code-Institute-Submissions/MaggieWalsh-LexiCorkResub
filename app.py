@@ -32,15 +32,18 @@ def index():
 @app.route("/alphabet/<letter>")
 def alphabet(letter):
     ''' Adds letters to the alphabet page '''
-    words = mongo.db.dictionary
-    found_words = list(
-        words.find({"category_name": letter.lower()}).sort("word"))
-    print(letter)
-    return render_template(
-        'alphabet.html',
-        page_title=letter,
-        alphabetList=alphabetList,
-        words=found_words)
+    if letter.len(1) and letter.isalpha():
+        words = mongo.db.dictionary
+        found_words = list(
+            words.find({"category_name": letter.lower()}).sort("word"))
+        print(letter)
+        return render_template(
+            'alphabet.html',
+            page_title=letter,
+            alphabetList=alphabetList,
+            words=found_words)
+    else:
+        return render_template('404.html'), 404
 
 
 @app.route("/register", methods=["GET", "POST"])
