@@ -25,10 +25,11 @@ alphabetList = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 @app.route("/index")
 def index():
     """Adds letters to the home page"""
-    words = mongo.db.dictionary
+    words = mongo.db.dictionary.insert_one({"category_name": letter.lower()}).sort("word")
+    print(words)
     return render_template(
         "index.html",
-        page_title="Browse the dictionary", alphabetList=alphabetList
+        page_title="Browse the dictionary", alphabetList=alphabetList,
     )
 
 
