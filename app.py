@@ -1,5 +1,7 @@
 import os
-from flask import Flask, flash, render_template, redirect, request, session, url_for
+from flask import (
+    Flask, flash, render_template, redirect, request, session, url_for
+    )
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -24,7 +26,8 @@ alphabetList = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 def index():
     """Adds letters to the home page"""
     return render_template(
-        "index.html", page_title="Browse the dictionary", alphabetList=alphabetList
+        "index.html",
+        page_title="Browse the dictionary", alphabetList=alphabetList
     )
 
 
@@ -32,10 +35,13 @@ def index():
 def alphabet(letter):
     """Adds letters to the alphabet page"""
     words = mongo.db.dictionary
-    found_words = list(words.find({"category_name": letter.lower()}).sort("word"))
+    found_words = list(
+        words.find({"category_name": letter.lower()}).sort("word")
+    )
     print(letter)
     return render_template(
-        "alphabet.html", page_title=letter, alphabetList=alphabetList, words=found_words
+        "alphabet.html",
+        page_title=letter, alphabetList=alphabetList, words=found_words
     )
 
 
@@ -98,8 +104,9 @@ def login():
 def profile(username):
     """Dynamically creates profile page for new user"""
     # user's name retrieved from db
-    username = mongo.db.users.find_one({"username": session["user"]})["username"]
-    words = list(mongo.db.dictionary.find({'created_by':username}))
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    words = list(mongo.db.dictionary.find({'created_by': username}))
     print(words)
 
     if session["user"]:
@@ -146,7 +153,8 @@ def submit_word():
             return redirect(url_for("submit_word"))
 
     words = list(mongo.db.dictionary.find())
-    return render_template("submit_word.html", dictionary=words, alphabet=alphabetList)
+    return render_template(
+        "submit_word.html", dictionary=words, alphabet=alphabetList)
 
 
 @app.route("/edit_word/<word_id>", methods=["GET", "POST"])
@@ -156,7 +164,8 @@ def edit_word(word_id):
     dictionary = mongo.db.dictionary
     if request.method == "POST":
         print('bob')
-        existing_word = mongo.db.dictionary.find_one({"_id": ObjectId(word_id)})
+        existing_word = mongo.db.dictionary.find_one(
+            {"_id": ObjectId(word_id)})
         print(request.form.get("category"))
 
         if existing_word:
@@ -170,8 +179,10 @@ def edit_word(word_id):
             dictionary.replace_one({"_id": ObjectId(word_id)}, submit)
             flash("Word updated successfully.")
             return render_template(
-        "index.html", page_title="Browse the dictionary", alphabetList=alphabetList
-    )
+                "index.html",
+                page_title="Browse the dictionary",
+                alphabetList=alphabetList
+                )
 
     word = dictionary.find_one({"_id": ObjectId(word_id)})
 
@@ -208,4 +219,8 @@ def internal_error(err):
 
 
 if __name__ == "__main__":
-    app.run(host=os.environ.get("IP"), port=int(os.environ.get("PORT")), debug=False)
+    app.run(
+        host=os.environ.get("IP"),
+        port=int(os.environ.get("PORT")),
+        debug=False
+        )
