@@ -25,6 +25,7 @@ alphabetList = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 @app.route("/index")
 def index():
     """Adds letters to the home page"""
+    words = mongo.db.dictionary
     return render_template(
         "index.html",
         page_title="Browse the dictionary", alphabetList=alphabetList
