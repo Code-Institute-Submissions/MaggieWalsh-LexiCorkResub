@@ -213,7 +213,7 @@ def page_not_found(error):
 @app.errorhandler(500)
 def internal_error(err):
     """
-    If 404 error occurs, user directed to custom 404 page
+    If 500 error occurs, user directed to custom 500 page
     """
     return render_template("500.html"), 500
 
