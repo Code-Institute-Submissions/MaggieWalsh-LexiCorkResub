@@ -99,9 +99,11 @@ def profile(username):
     """Dynamically creates profile page for new user"""
     # user's name retrieved from db
     username = mongo.db.users.find_one({"username": session["user"]})["username"]
+    words = list(mongo.db.dictionary.find({'created_by':username}))
+    print(words)
 
     if session["user"]:
-        return render_template("profile.html", username=username)
+        return render_template("profile.html", username=username, words=words)
 
     return redirect(url_for("login"))
 
@@ -150,6 +152,7 @@ def submit_word():
 @app.route("/edit_word/<word_id>", methods=["GET", "POST"])
 def edit_word(word_id):
     """Edit word"""
+    print(word_id)
     dictionary = mongo.db.dictionary
     if request.method == "POST":
         print('bob')
@@ -180,7 +183,7 @@ def edit_word(word_id):
 @app.route("/delete_word/<word_id>")
 def delete_word(word_id):
     """Delete word"""
-    mongo.db.dictionary.remove({"_id": ObjectId(word_id)})
+    mongo.db.dictionary.delete_one({"_id": ObjectId(word_id)})
     flash("Word succesfully deleted!")
     return redirect(url_for("profile"))
 

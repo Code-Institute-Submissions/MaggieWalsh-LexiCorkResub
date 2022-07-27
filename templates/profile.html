@@ -12,11 +12,14 @@
     </div>
 
     <!-- url below is throwing an error that word isn't defined -->
+    {% for word in words %}
     <div class="">
-        <a href="" class="btn-sm btn-danger rounded">Edit</a>
+        {{ words }}
+        <a href="{{ url_for('edit_word', word_id=word._id) }}" class="btn-sm btn-danger rounded">Edit</a>
     </div>
     <div class="">
-        <a href="" class="btn-sm btn-danger rounded">Delete</a>
+        <a href="{{ url_for('delete_word', word_id=word._id) }}" class="btn-sm btn-danger rounded">Delete</a>
     </div>
+    {% endfor %}
 
 {% endblock %}
