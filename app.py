@@ -183,9 +183,12 @@ def edit_word(word_id):
 @app.route("/delete_word/<word_id>")
 def delete_word(word_id):
     """Delete word"""
+    username = mongo.db.users.find_one(
+        {"username": session["user"]}
+        )["username"]
     mongo.db.dictionary.delete_one({"_id": ObjectId(word_id)})
     flash("Word succesfully deleted!")
-    return redirect(url_for("profile"))
+    return redirect(url_for("profile", username=username))
 
 
 @app.errorhandler(404)
