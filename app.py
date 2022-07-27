@@ -1,4 +1,5 @@
 import os
+import random
 from flask import (
     Flask, flash, render_template, redirect, request, session, url_for
     )
@@ -25,7 +26,8 @@ alphabetList = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 @app.route("/index")
 def index():
     """Adds letters to the home page"""
-    words = mongo.db.dictionary.insert_one({"category_name": letter.lower()}).sort("word")
+    # fix or delete before submission. try to get words on home page
+    words = mongo.db.dictionary.find_one("words")
     print(words)
     return render_template(
         "index.html",
