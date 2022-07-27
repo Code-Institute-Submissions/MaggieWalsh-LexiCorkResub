@@ -26,8 +26,8 @@ alphabetList = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 @app.route("/index")
 def index():
     """Adds letters to the home page"""
-    # fix or delete before submission. try to get words on home page
-    words = mongo.db.dictionary.find_one("words")
+    # fix or delete before submission. try to get words on home page. words printing in now. update.
+    words = list(mongo.db.dictionary.find())
     print(words)
     return render_template(
         "index.html",
