@@ -20,10 +20,26 @@
     padding: 2px 16px;
   }
 
-/* Flash messages */
-.flashes h4 {
-    line-height: 2;
+.message-container {
+    background-color:rgb(0,154,73);
+    position: fixed;
+    top: 537px;
+    right: 15px;
+    z-index: 99999999999;
 }
+
+#hide-message {
+    animation: hideAnimation 0s ease-in 5s;
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes hideAnimation {
+    to {
+      visibility: hidden;
+      width: 0;
+      height: 0;
+    }
+  }
 
 /* Limit the number of cards to a deck
 https://stackoverflow.com/questions/38895106/how-to-limit-number-of-columns-of-card-deck */
