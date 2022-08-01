@@ -26,12 +26,11 @@ alphabetList = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 @app.route("/index")
 def index():
     """Adds letters to the home page"""
-    # fix or delete before submission. try to get words on home page. words printing in now. update.
-    words = list(mongo.db.dictionary.find())
-    print(words)
+    words = list(mongo.db.dictionary.aggregate([{'$sample': {'size': 1 }}]))
     return render_template(
         "index.html",
         page_title="Browse the dictionary", alphabetList=alphabetList,
+        words=words
     )
 
 

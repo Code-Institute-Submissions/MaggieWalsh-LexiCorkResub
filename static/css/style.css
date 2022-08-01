@@ -35,6 +35,10 @@ https://stackoverflow.com/questions/38895106/how-to-limit-number-of-columns-of-c
     grid-gap: .5rem;
 }
 
+.home-card-deck{
+    margin: auto;
+}
+
 /* Error messages */
 .error-message {
     background: black;
