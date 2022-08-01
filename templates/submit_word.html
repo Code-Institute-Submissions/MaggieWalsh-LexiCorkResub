@@ -24,12 +24,12 @@
           <textarea class="use form-control" id="use" name="use" maxlength="200" rows="2" required></textarea>
         </div>
         <div class="text-center">
-            <button type="submit" id="submit-word" class="btn btn-dark rounded">Submit Word</button>
+            <button type="submit" id="submit-word" class="btn text-uppercase btn-dark rounded">Submit Word</button>
         </div>
       </form>
       {% for word in word %}
       <div class="">
-        <a href="{{url_for('edit_word', word_id=word._id)}}" class="btn-sm btn-danger rounded">Edit</a>
+        <a href="{{url_for('edit_word', word_id=word._id)}}" class="btn-sm text-uppercase btn-danger rounded">Edit</a>
       </div>
       {% endfor %}
 
