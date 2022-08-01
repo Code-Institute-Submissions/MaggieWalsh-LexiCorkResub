@@ -40,7 +40,6 @@ def alphabet(letter):
     found_words = list(
         words.find({"category_name": letter.lower()}).sort("word")
     )
-    print(letter)
     return render_template(
         "alphabet.html",
         page_title=letter, alphabetList=alphabetList, words=found_words
@@ -109,7 +108,6 @@ def profile(username):
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
     words = list(mongo.db.dictionary.find({'created_by': username}))
-    print(words)
 
     if session["user"]:
         return render_template("profile.html", username=username, words=words)
@@ -162,10 +160,8 @@ def submit_word():
 @app.route("/edit_word/<word_id>", methods=["GET", "POST"])
 def edit_word(word_id):
     """Edit word"""
-    print(word_id)
     dictionary = mongo.db.dictionary
     if request.method == "POST":
-        print('bob')
         existing_word = mongo.db.dictionary.find_one(
             {"_id": ObjectId(word_id)})
         print(request.form.get("category"))
@@ -180,11 +176,7 @@ def edit_word(word_id):
             }
             dictionary.replace_one({"_id": ObjectId(word_id)}, submit)
             flash("Word updated successfully.")
-            return render_template(
-                "index.html",
-                page_title="Browse the dictionary",
-                alphabetList=alphabetList
-                )
+            return redirect(url_for("profile", username=session["user"]))
 
     word = dictionary.find_one({"_id": ObjectId(word_id)})
 
