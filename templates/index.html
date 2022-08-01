@@ -12,6 +12,7 @@
         </tr>
     </table>
     <br>
+    <!-- Random word generator -->
     <div class="row">
       <div class="col">
           <div class="card-panel text-center">
@@ -20,7 +21,8 @@
               </h3>
           </div>
       </div>
-  </div>
+    </div>
+    <!-- Card Deck to Display Words -->
     <div class="card-deck w-50 home-card-deck">
         {% for word in words %}
         <div class="card">
@@ -30,6 +32,7 @@
             <p class="card-text"><strong>Use : </strong>{{ word.use }}</p>
             <p class="card-text"><em>Submitted by : {{ word.created_by|capitalize }}</em></p>  
             <div>
+              <!-- Reload page on click -->
               <button class="btn-sm btn-dark rounded text-center text-uppercase" onClick="window.location.reload();">New word</button>
               </div>    
           </div>

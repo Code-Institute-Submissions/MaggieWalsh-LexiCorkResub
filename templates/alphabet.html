@@ -12,11 +12,11 @@
         </tr>
     </table>
     <hr />
+    {% for word in words %}
     <h3 class="col-lg-12 col-md-12 text-center">Displaying all words beginning with the letter {{ page_title }}</h3>
     <hr />
     <!-- Card Deck to Display Words -->
     <div class="card-deck">
-        {% for word in words %}
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">{{ word.word|capitalize }}</h5>
@@ -26,7 +26,8 @@
             <p class="card-text"><em>Submitted by : {{ word.created_by|capitalize }}</em></p>         
           </div>
         </div>
-        {% endfor %}
+        {% else %}
+            <div><p>Looks like there aren't any words beginning with this letter yet, would you like to <a href="{{ url_for('submit_word') }}">add one now</a>?</p></div>
       </div>
-
+    {% endfor %}
 {% endblock %}

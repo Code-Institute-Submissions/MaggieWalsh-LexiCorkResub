@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -17,7 +16,6 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" />
   <title>LexiCork</title>
 </head>
-
 <body>
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
@@ -56,7 +54,6 @@
       </div>
     </div>
   </nav>
-
   <!-- Page Header -->
   <header class="masthead" style="background-image: url('{{ url_for('static', filename='img/dictionary.jpg') }}')">
     <div class="overlay"></div>
@@ -83,11 +80,9 @@
       {% endif %}
     {% endwith %}
   </section>
-
   <!-- Main Content -->
   <main class="container">{% block content %} {% endblock %}</main>
   <hr />
-
   <!-- Footer -->
   <footer>
     <div class="container">
@@ -95,7 +90,7 @@
         <div class="col-lg-8 col-md-10 mx-auto">
           <ul class="list-inline text-center">
             <li class="list-inline-item">
-              <a href="#">
+              <a href="https://twitter.com/?lang=en" target="_blank">
                 <span class="fa-stack fa-lg">
                   <i class="fas fa-circle fa-stack-2x"></i>
                   <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
@@ -103,7 +98,7 @@
               </a>
             </li>
             <li class="list-inline-item">
-              <a href="#">
+              <a href="https://www.facebook.com/" target="_blank">
                 <span class="fa-stack fa-lg">
                   <i class="fas fa-circle fa-stack-2x"></i>
                   <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
@@ -111,7 +106,7 @@
               </a>
             </li>
             <li class="list-inline-item">
-              <a href="#">
+              <a href="https://github.com/" target="_blank">
                 <span class="fa-stack fa-lg">
                   <i class="fas fa-circle fa-stack-2x"></i>
                   <i class="fab fa-github fa-stack-1x fa-inverse"></i>
@@ -126,14 +121,11 @@
       </div>
     </div>
   </footer>
-
   <!-- Bootstrap core JavaScript -->
   <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
   <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
   <!-- Custom scripts for this template -->
   <script src="{{ url_for('static', filename='js/clean-blog.min.js') }}"></script>
-
   <!-- Custom script - add current year function, try to add to JS file later -->
   <script>
     $('#copyright').text(new Date().getFullYear())

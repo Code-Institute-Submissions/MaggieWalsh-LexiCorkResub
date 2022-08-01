@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% block content %}
     <!-- Submit Word -->
     <form class="" method="POST" action="{{url_for('submit_word')}}">
@@ -32,6 +31,4 @@
         <a href="{{url_for('edit_word', word_id=word._id)}}" class="btn-sm text-uppercase btn-danger rounded">Edit</a>
       </div>
       {% endfor %}
-
-
 {% endblock %}
