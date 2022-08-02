@@ -27,7 +27,7 @@
         {% for word in words %}
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">{{ word.word|capitalize }}</h5>
+            <h4 class="card-title">{{ word.word|capitalize }}</h4>
             <p class="card-text"><strong>Definition : </strong>{{ word.definition }}</p>  
             <p class="card-text"><strong>Use : </strong>{{ word.use }}</p>
             <p class="card-text"><em>Submitted by : {{ word.created_by|capitalize }}</em></p>  

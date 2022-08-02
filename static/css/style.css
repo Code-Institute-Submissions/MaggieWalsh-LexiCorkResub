@@ -3,7 +3,7 @@ body {
 }
 
 /* Font colour for logo */
-#red-text{
+#red-text, #more-red-text {
     color: #8b0000;
 }
 
