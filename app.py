@@ -1,6 +1,6 @@
 import os
 from flask import (
-    Flask, flash, render_template, redirect, request, session, url_for
+    Flask, flash, render_template, redirect, request, session, url_for,
     )
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
@@ -131,6 +131,8 @@ def logout():
 @app.route("/submit_word", methods=["GET", "POST"])
 def submit_word():
     """Submit word"""
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
     if request.method == "GET":
         new_word_value = request.args.get("new_word")
         if new_word_value is not None:
@@ -153,8 +155,11 @@ def submit_word():
             return redirect(url_for("index"))
             # redirect if word exists
         else:
-            flash("Looks like this word already exists, try adding another word.")
-            return redirect(url_for("submit_word"))
+            flash(
+                "Looks like this word already exists, try adding another word."
+                )
+            if session["user"]:
+                return redirect(url_for("submit_word"))
 
     words = list(mongo.db.dictionary.find())
     return render_template(
