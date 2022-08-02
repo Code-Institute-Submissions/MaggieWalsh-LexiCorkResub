@@ -153,7 +153,7 @@ def submit_word():
             return redirect(url_for("index"))
             # redirect if word exists
         else:
-            flash("Looks like this word already exists, try another")
+            flash("Looks like this word already exists, try adding another word.")
             return redirect(url_for("submit_word"))
 
     words = list(mongo.db.dictionary.find())
