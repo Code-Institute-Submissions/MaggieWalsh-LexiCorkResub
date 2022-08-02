@@ -15,7 +15,7 @@
     <!-- Card Deck to Display Words -->
     <div class="card-deck">
       {% for word in words %}
-        <div class="card m-auto">
+        <div class="card">
           <div class="card-body">
             <h4 class="card-title">{{ word.word|capitalize }}</h5>
             <p class="card-text"><strong>Definition : </strong>{{ word.definition }}</p>  
