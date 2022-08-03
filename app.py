@@ -131,12 +131,11 @@ def logout():
 @app.route("/submit_word", methods=["GET", "POST"])
 def submit_word():
     """Submit word"""
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
-    if request.method == "GET":
-        new_word_value = request.args.get("new_word")
-        if new_word_value is not None:
-            new_word_value = new_word_value.lower()
+    if session["user"]:
+        if request.method == "GET":
+            new_word_value = request.args.get("new_word")
+            if new_word_value is not None:
+                new_word_value = new_word_value.lower()
     if request.method == "POST":
         existing_word = mongo.db.dictionary.find_one(
             {"word": request.form.get("word").lower()}

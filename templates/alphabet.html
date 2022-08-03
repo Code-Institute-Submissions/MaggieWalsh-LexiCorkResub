@@ -11,7 +11,6 @@
             {% endfor %}
         </tr>
     </table>
-    {% if session.user %}
     <hr />
     <!-- Card Deck to Display Words -->
     <div class="card-deck">
@@ -26,10 +25,11 @@
           </div>
         </div>
         {% else %}
+        {% if session.user %}
         <div>
           <p>Looks like there aren't any words beginning with this letter yet, would you like to <a href="{{ url_for('submit_word') }}">add one now</a>?</p>
         </div>
+        {% endif %}
     </div>
     {% endfor %}
-    {% endif %}
 {% endblock %}
